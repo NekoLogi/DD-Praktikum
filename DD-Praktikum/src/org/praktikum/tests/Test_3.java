@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Test_3 {
 
 	public static void main(String[] args) {
-		ToRomanNumerals();
+		FizzBuzz();
 	}
 	static void FizzBuzz() {
 		// Fizz Buzz
@@ -29,8 +29,5 @@ public class Test_3 {
 	static void ToRomanNumerals() {
 		Scanner user = new Scanner(System.in);
 		int input = user.nextInt();
-		
-		
-		
 	}
 }

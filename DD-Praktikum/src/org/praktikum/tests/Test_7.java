@@ -11,7 +11,9 @@ public class Test_7 {
 		String choice = "1";
 		String sMoney;
 		int offMoney;
+		
 		Scanner user = new Scanner(System.in);
+		
 		List wareName = new List();
 		List warePrice = new List();
 		List wareAmount = new List();
@@ -43,9 +45,10 @@ public class Test_7 {
 			money -= offMoney;
 		}
 		System.out.println("-------------------------------");
+		
 		if(money < 0) {
-			String[] stringMoney = Integer.toString(money).split("-");
-			System.out.print("Dein Geld reicht nicht aus dir fehlen noch: " + stringMoney[0]);
+			String stringMoney = Integer.toString(money).trim("-");
+			System.out.print("Dein Geld reicht nicht aus dir fehlen noch: " + stringMoney);
 		}
 		System.out.println(money + "€");
 	}
