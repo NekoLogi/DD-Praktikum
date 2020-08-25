@@ -8,7 +8,7 @@ public class Test_7 {
 	public static void main(String[] args) {
 		// Kassenbon
 		
-		String choice = "1";
+		int choice = 1;
 		String sMoney;
 		int offMoney;
 		
@@ -23,7 +23,7 @@ public class Test_7 {
 			sMoney = user.nextLine();
 			int money = Integer.parseInt(sMoney);
 			
-			while (choice == "1") {
+			while (choice == 1) {
 				System.out.println("Warenname: ");
 				wareName.add(user.nextLine());
 				
@@ -34,8 +34,8 @@ public class Test_7 {
 				String s = user.nextLine();
 				wareAmount.add(s);
 				
-				System.out.println("Willst du noch eine Ware einfügen? 1 = ja | 2 = nein");
-				choice = user.nextLine();
+				System.out.println("Willst du noch eine Ware einfÃ¼gen? 1 = ja | 2 = nein");
+				choice = Integer.parseInt(user.nextLine());
 			}
 			user.close();
 
@@ -43,7 +43,7 @@ public class Test_7 {
 			for (int i = 0; i < wareName.getItemCount(); i++) {
 				
 				System.out.println(wareName.getItem(i)
-						+ "\tx" + wareAmount.getItem(i) + " " 
+						+ "\tx" + wareAmount.getItem(i) + " "
 						+ (offMoney = (Integer.parseInt(warePrice.getItem(i)) * Integer.parseInt(wareAmount.getItem(i)))) 
 						+ "€");
 				money -= offMoney;
@@ -51,9 +51,9 @@ public class Test_7 {
 			System.out.println("-------------------------------");
 			
 			if(money < 0) {
-				System.out.print("Dein Geld reicht nicht aus dir fehlen noch: " + money + '€');
+				System.out.print("Dein Geld reicht nicht aus dir fehlen noch: " + money + "€");
 			} else {
-				System.out.println(money + '€');
+				System.out.println(money + "€");
 			}
 		} catch (Exception e){
 			System.out.println("Etwas ist schief gelaufen: " + e.toString());
