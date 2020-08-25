@@ -10,79 +10,44 @@ public class Test_4_5 {
 		
 		Scanner user = new Scanner(System.in);
 
-		FromRomanNummerals(user);
-		//ToRomanNummerals(user);
+		//FromRomanNummerals(user);
+		ToRomanNummerals(user);
 	}
 	
 	public static void FromRomanNummerals(Scanner user) {
 		
-		ArrayList<Character> romZiffer = new ArrayList<Character>();
+		ArrayList<Character> romInput = new ArrayList<Character>();
 		
+		int summe = 0;
+		int firstZiff = 0;
+		int secZiff = 0;
+		
+		String romZiffer = "IVXLCDM";
+		int[] dezZiffer = {1, 5, 10, 50, 100, 500, 1000};
+				
 		System.out.println("Römische Ziffern:");
 		String input = user.nextLine();
-		int summe = 0;
-		int iZiffer = 0;
-		
+		user.close();
 		for (int i = 0; i < input.length(); i++) {
-			romZiffer.add(input.charAt(i));
-			
-			if (romZiffer.get(i) == 'M') {
-				summe += 1000;
-				Test(input, 'M');
-				LessThan(romZiffer, i, input);
+			romInput.add(input.charAt(i));
+		}
+		for (int i = 0; i < input.length(); i++) {
+			try {
+				char[] ziffer = {romInput.get(i), romInput.get(i + 1)};
+				firstZiff = romZiffer.lastIndexOf(ziffer[0]);
+				secZiff = romZiffer.lastIndexOf(ziffer[1]);
 				
-
-			} else if (romZiffer.get(i) == 'D') {
-				summe += 500;
-				Test(input, 'D');
-				LessThan(romZiffer, i, input);
-
-				
-			} else if (romZiffer.get(i) == 'C') {
-				summe += 100;
-				Test(input, 'C');
-				LessThan(romZiffer, i, input);
-				
-			} else if (romZiffer.get(i) == 'L') {
-				summe += 50;
-				Test(input, 'L');
-				LessThan(romZiffer, i, input);
-				
-			} else if (romZiffer.get(i) == 'X') {
-				summe += 10;
-				Test(input, 'X');
-				LessThan(romZiffer, i, input);
-				
-			} else if (romZiffer.get(i) == 'V') {
-				summe += 5;
-				Test(input, 'V');
-				LessThan(romZiffer, i, input);
-				
-			} else if (romZiffer.get(i) == 'I') {
-				summe += 1;
-				Test(input, 'I');
-				LessThan(romZiffer, i, input);
+				if (firstZiff < secZiff) {
+					summe += (dezZiffer[secZiff] - dezZiffer[firstZiff]);
+				} else if (firstZiff >= secZiff) {
+					summe += (dezZiffer[firstZiff] + dezZiffer[secZiff]);
+				}
+				i++;
+			} catch(Exception err) {
+				summe += dezZiffer[firstZiff];
 			}
 		}
-		System.out.println(summe -= iZiffer);
-	}
-	
-	public static void LessThan(ArrayList<Character> romZiffer, int i, String input) {
-		try {
-			String rZiffer = "IVXLCDM";
-			int index = 0;
-			char ziff = romZiffer.get(i);
-			int current = rZiffer.charAt(romZiffer.get(i));
-			
-			index = i + 1;
-			int next = rZiffer.charAt(romZiffer.get(index));
-			current++;
-			if(current < next) {
-				Test(input, ziff);
-				System.out.println("true");
-			}
-		} catch (Exception e) { }
-
+		System.out.println(summe);
 	}
 	
 	public static void ToRomanNummerals(Scanner user) {
@@ -130,32 +95,5 @@ public class Test_4_5 {
 		for (int i = 0; i < newZiffer.getItemCount(); i++) {
 			System.out.print(newZiffer.getItem(i));
 		}
-	}
-	
-	public static int Test(String input, char ziff) {
-		int index = -1;
-		int iZiffer = 0;
-		String romZiffer = "IVXLCDM";
-		String[] minZiffer = {"1", "5", "10", "50", "100", "500", "1000"};
-		
-		if (input.contains(Character.toString(ziff))) {
-			index = input.lastIndexOf(ziff);
-			index++;
-			if (index < input.length()) {
-				try {
-					while (true) {
-						index--;
-						iZiffer++;
-						if(input.charAt(index) == ziff) {	
-						} else {
-							break;
-						}
-					}
-				} catch (Exception e) {
-				}
-			}
-		}
-		int indexZiff = romZiffer.lastIndexOf(ziff);
-		return iZiffer * Integer.parseInt(minZiffer[indexZiff]);
 	}
 }
