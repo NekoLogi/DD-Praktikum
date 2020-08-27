@@ -4,18 +4,20 @@ import java.util.ArrayList;
 
 public class New {
 
-	public static String romZiffer = "IVXLCDM";
-	public static char[] charZiffer = {'I' , 'V' , 'X' , 'L' , 'C' , 'D' , 'M'};
-	public static int[] dezZiffer = {1, 5, 10, 50, 100, 500, 1000, 0};
-	public static int charCount = 1;
-	public static int input = 99;
+	static String romZiffer = "IVXLCDM";
+	static char[] charZiffer = {'I' , 'V' , 'X' , 'L' , 'C' , 'D' , 'M'};
+	static int[] dezZiffer = {1, 5, 10, 50, 100, 500, 1000, 0};
+	static int charCount = 1;
+	static int input = 9;
+	static int index = 0;
+	static int countCharCount = 0;
 	
-	public static ArrayList<Character> romInput = new ArrayList<Character>();
-	public static ArrayList<Character> newOutput = new ArrayList<Character>();
+	static ArrayList<Character> romInput = new ArrayList<Character>();
+	static ArrayList<Character> newOutput = new ArrayList<Character>();
 	
 	public static void main(String[] args) {
 		
-		int index = 0;
+		
 		
 		GetRomanNummerals();
 		
@@ -23,31 +25,34 @@ public class New {
 			for (index = index; index < romInput.size(); index++) {
 				if (romInput.get(index) == romInput.get(index + 1)) {
 					charCount++;
+					if (charCount > 3) {
+						countCharCount++;
+					}
 				} else if (index + 1 >= romInput.size()) {
 					break;
-					}
-				if(charCount > 3) {
+					} else if(charCount > 3) {
 					int n = romZiffer.indexOf(romInput.get(index));
 					
 					ProcessNummerals(n);
-					index = index + charCount;
+					//index = index + 1;
 					charCount = 1;
+					countCharCount++;
 				} else {
+					newOutput.add(romInput.get(index));
 				}
 			}
 
 			
 		} catch (Exception err) { }	
-		for (index = index; index < romInput.size(); index++) {
-			newOutput.add(romInput.get(index));
-		}
-		for (int i = 0; i < newOutput.size(); i++) {
-			System.out.print(newOutput.get(i));
+		try {
+			EndResult();
+		} catch (Exception err) {
+			EndResult();
 		}
 	}
 	
 	public static void GetRomanNummerals() {
-		
+
 		for (int i = 6; i > -1; i--) {
 			while(input >= dezZiffer[i]) {
 				input -= dezZiffer[i];
@@ -76,5 +81,26 @@ public class New {
 				}
 			}
 		}
+	}
+	
+	public static void EndResult() {
+		if (charCount > 3) {
+			int n = romZiffer.indexOf(romInput.get(index));
+			
+			ProcessNummerals(n);
+			charCount = 1;
+		} else {
+			newOutput.add(romInput.get(index - 1));
+			
+			for (index = index; index < romInput.size(); index++) {
+				newOutput.add(romInput.get(index));
+			}
+		}
+		if (countCharCount != 0) {
+			for (int i = 0; i < newOutput.size(); i++) {
+				System.out.print(newOutput.get(i));
+			}
+		}
+		
 	}
 }
