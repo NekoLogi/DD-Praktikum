@@ -28,7 +28,8 @@ public class Test_6 {
 		
 		Scanner user = new Scanner(System.in);
 		
-		String input = "aug20-9am@followup.cc";
+		System.out.println("Followup Email: ");
+		String input = user.nextLine();
 		String[] eMail = input.split("@");
 		
 		GetMailTime(eMail);
@@ -89,11 +90,10 @@ public class Test_6 {
 		if(eMail[0].contains("week")) {
 			index = eMail[0].indexOf('w');
 			storeDateTime[0] = 7 * Integer.parseInt(Character.toString(eMail[0].charAt(index - 1)));
-			
-			if(eMail[0].contains("day")) {
-				index = eMail[0].indexOf('d');
-				storeDateTime[0] = storeDateTime[0] + Integer.parseInt(Character.toString(eMail[0].charAt(index - 1)));
-			}
+		}
+		if(eMail[0].contains("day")) {
+			index = eMail[0].indexOf('d');
+			storeDateTime[0] = storeDateTime[0] + Integer.parseInt(Character.toString(eMail[0].charAt(index - 1)));
 		}
 		
 		for (int i = 0; i < 3; i++) {	
