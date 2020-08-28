@@ -72,7 +72,7 @@ public class Test_6 {
 		} else {
 			cal.set(Calendar.HOUR, storeDateTime[3]);
 			cal.set(Calendar.AM_PM, storeDateTime[3]);
-			cal.set(Calendar.MONTH, storeDateTime[1]);
+			cal.set(Calendar.MONTH, storeDateTime[1] - 1);
 			cal.set(Calendar.DAY_OF_MONTH, storeDateTime[0] - 4);
 			cal.set(Calendar.YEAR, localeDate[2]);
 			cal.set(Calendar.MINUTE, 0);

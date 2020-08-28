@@ -45,7 +45,7 @@ public class Test_4_5 {
 					int n = romZiffer.indexOf(romInput.get(index));
 					
 					ProcessNummerals(n);
-					//index = index + 1;
+
 					charCount = 1;
 					countCharCount++;
 				} else {
